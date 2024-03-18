@@ -20,4 +20,11 @@ if __name__ == "__main__":
     if option == "-h":
         print_help()
         sys.exit(0)
-    
+    elif option == "-u":
+        pass
+    elif option == "-s":
+        pass
+    else:
+        print("Invalid option")
+        print_help()
+        sys.exit(2)
