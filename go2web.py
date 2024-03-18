@@ -44,7 +44,7 @@ if __name__ == "__main__":
         print_help()
         sys.exit(0)
     elif option == "-u":
-        pass
+        fetch_url(sys.argv[2])
     elif option == "-s":
         pass
     else:
