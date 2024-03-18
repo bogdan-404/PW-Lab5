@@ -2,6 +2,8 @@
 import socket
 import sys
 import os
+from urllib.parse import urlparse, quote_plus
+from bs4 import BeautifulSoup
 
 
 def send_request(host, port, request):
@@ -21,6 +23,16 @@ def print_help():
     -h               show this help
     """
     print(help_text)
+
+
+def fetch_url(url):
+    parsed_url = urlparse(url)
+    path = parsed_url.path if parsed_url.path != "" else "/"
+    request_line = f"GET {path} HTTP/1.1\r\n"
+    headers = f"Host: {parsed_url.netloc}\r\nUser-Agent: Mozilla/5.0\r\nConnection: close\r\n\r\n"
+    response = send_request(parsed_url.netloc, 80, (request_line + headers).encode())
+    soup = BeautifulSoup(response, "html.parser")
+    print(soup.get_text())
 
 
 if __name__ == "__main__":
