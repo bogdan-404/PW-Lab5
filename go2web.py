@@ -15,3 +15,9 @@ def print_help():
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         sys.exit(2)
+
+    option = sys.argv[1]
+    if option == "-h":
+        print_help()
+        sys.exit(0)
+    
